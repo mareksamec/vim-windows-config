@@ -4,6 +4,9 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/XMLExpander'
 "Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/vim-show-char'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 
@@ -15,6 +18,9 @@ call plug#end()
 set number
 set backspace=indent,eol,start
 set term=win32
+
+" This will turn of the line wrapping, CAREFUL, the lines will be out of screen and no horizontal scrollbar is visibile in the command line vim.
+set nowrap
 
 "This is to set default line endings to unix style [LF] /n
 set fileformats=unix,dos
@@ -63,7 +69,7 @@ noremap <C-l> :n<CR>
 noremap <C-h> :N<CR>
 
 "This changes the tab mapping to ?\ and end of line mapping to ¬
-set listchars=tab:?\ ,eol:¬
+set listchars=tab:>\-,eol:¬
 
 " # UNUSED MAPPINGS
 "map <F2> :set list <bar> :e ++ff=unix<CR>
