@@ -8,12 +8,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'scrooloose/nerdtree'
 call plug#end()
-
-
 "Other plugins:
 " To display help for vim whitespace plugin type :h ShowWhitespace.txt
-
-
 "------------ MY CUSTOMIZATIONS -----------------
 set number
 set backspace=indent,eol,start
@@ -21,10 +17,12 @@ set term=win32
 
 " This will turn of the line wrapping, CAREFUL, the lines will be out of screen and no horizontal scrollbar is visibile in the command line vim.
 set nowrap
+set linebreak
+
 
 "This is to set default line endings to unix style [LF] /n
-set fileformats=unix,dos
-set fileformat=unix
+"set fileformats=unix,dos
+"set fileformat=unix
 
 "--- Airline
 set encoding=utf-8
@@ -33,7 +31,6 @@ set guifont=Fira\ Mono\ Medium\ for\ Powerline:h9
 
 " Auto identation
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-
 
 "Formatting plugins for vim-autoformater
 let g:formatterpath = ["%CMDER_ROOT%\vendor\tidy"]
@@ -48,25 +45,28 @@ set hlsearch
 "hi Search guibg=LightBlue
 
 "-----------CUSTOM KEY MAPPINGS--------------------
-
 "--NOTES--:
-"
 ":ShowWhiteToggle to se whitespaces
 
 "Toggle whitespace and linebreak characters visibility
 map <F2> :set list<bar> :ShowWhiteToggle<CR>
 map <F3> :set nolist<CR>
-
 "Auto pretty format XML file
 noremap <F5> :.!xmllint --format --recover - 2>/dev/null<CR>
-
 "Change text file type between linux and dos
 map <F9> :e ++ff=unix<CR>
 map <F10> :e ++ff=dos<CR>
 
+"Replace ' with eol (useful for EDIFACT files)
+map <F8> :%s/'//g<CR>
+
 "Switching to next and previous tabs by Ctrl+l and Ctrl+h
 noremap <C-l> :n<CR>
 noremap <C-h> :N<CR>
+
+"Switch to next file buffer (seems windows vim uses buffers in default)
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
 
 "This changes the tab mapping to ?\ and end of line mapping to ¬
 set listchars=tab:>\-,eol:¬
